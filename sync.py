@@ -25,7 +25,7 @@ def main():
             if "Kartenzahlung" in transaction.get("zweck") and not transaction.get("empfaenger_name") :
                 transaction["empfaenger_name"] = transaction.get("zweck").split(",")[0]
             date = datetime.strptime(transaction["datum"],"%Y-%m-%d")
-            if not match_transaction(actual.session, date, act, imported_id=transaction.get("empfaenger_name", "")) and not transaction.get("flags") == "2":
+            if not match_transaction(actual.session, date, act, imported_id=transaction.get("customerref", "")) and not transaction.get("flags") == "2":
                 trans_number += 1
                 t = create_transaction(
                     actual.session,
