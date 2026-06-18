@@ -19,7 +19,6 @@ def main():
         act = get_account(actual.session, config.bankname)
         trans_number = 0
         for transaction in transactions:
-            trans_number += 1
             if "*" in transaction.get("zweck") and not transaction.get("empfaenger_name") :
                 transaction["empfaenger_name"] = transaction.get("zweck").split("*")[0]
             if "Kartenzahlung" in transaction.get("zweck") and not transaction.get("empfaenger_name") :
